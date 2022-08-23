@@ -1,0 +1,35 @@
+name: inspec-gcp
+title: RK - GCP InSpec Profile
+maintainer: Ramesh Kasinathan
+copyright: Ramesh Kasinathan
+copyright_email: you@example.com
+license: Apache-2.0
+summary: An InSpec Compliance Profile For GCP
+version:  1.10.37
+inspec_version: '>= 4'
+inputs:
+  - name: gcp_Project_ID
+    required: true
+    description: 'The GCP project Name.'
+    type: string
+  - name: gcp_Project_Number
+    required: true
+    description: 'The GCP project identifier.'
+    type: numeric
+  - name: VPC_NETWORK_NAME
+    required: true
+    type: string
+  - name: ROUTING_MODE
+    required: true
+    type: string
+  - name: k8s_container_cluster_location
+    required: true
+    type: string
+  - name: k8s_container_cluster_name
+    required: true
+    type: string  
+depends:
+  - name: inspec-gcp
+    url: https://github.com/inspec/inspec-gcp/archive/main.tar.gz
+supports:
+  - platform: gcp

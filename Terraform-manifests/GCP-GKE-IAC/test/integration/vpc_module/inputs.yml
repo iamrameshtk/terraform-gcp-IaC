@@ -1,0 +1,8 @@
+# Below is to be uncommented and set with your GCP project ID:
+gcp_Project_ID: rk-devops-infra
+gcp_Project_Number: 190541024977
+VPC_NETWORK_NAME: main
+ROUTING_MODE: REGIONAL
+k8s_container_cluster_location: europe-west2-a
+k8s_container_cluster_name: primary
+

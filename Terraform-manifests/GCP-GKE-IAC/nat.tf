@@ -1,9 +1,9 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat
 resource "google_compute_router_nat" "nat" {
-  project = "rk-devops-infra"
+  project = "${var.project_name}"
   name   = "nat"
   router = google_compute_router.router.name
-  region = "us-central1"
+  region = "${var.location}"
 
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
   nat_ip_allocate_option             = "MANUAL_ONLY"
@@ -18,11 +18,40 @@ resource "google_compute_router_nat" "nat" {
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address
 resource "google_compute_address" "nat" {
-  project = "rk-devops-infra"
-  region = "us-central1"
+  project = "${var.project_name}"
+  region = "${var.location}"
   name         = "nat"
   address_type = "EXTERNAL"
   network_tier = "PREMIUM"
 
   depends_on = [google_project_service.compute]
+}
+
+
+output "nat_address_name" {
+
+    description = "Google Compute NAT Address Name"
+    value = google_compute_address.nat.name
+  
+}
+
+output "nat_address" {
+
+    description = "Google Compute NAT Address"
+    value = google_compute_address.nat.address
+  
+}
+
+output "nat_address_tier" {
+
+    description = "Google Compute NAT Address Tier"
+    value = google_compute_address.nat.network_tier
+  
+}
+
+output "nat_address_region" {
+
+    description = "Google Compute NAT Address"
+    value = google_compute_address.nat.region
+  
 }

@@ -1,0 +1,17 @@
+{
+  "name": "allow-master-node-egress",
+  "description": "allow-master-node-egress",
+  "destinationRanges": [
+    "172.16.0.0/28"
+  ],
+  "allowed": [
+    {
+      "ports": [
+        "443",
+        "10250"
+      ],
+      "IPProtocol": "tcp"
+    }
+  ],
+  "direction": "EGRESS"
+}

@@ -1,0 +1,31 @@
+---
+driver:
+  name: terraform
+  parallelism: 4
+  command_timeout: 2800
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+  color: true
+  fail_fast: false
+
+platforms:
+  - name: terraform
+
+suites:
+  - name: vpc_module
+    driver:
+      root_module_directory: test/fixtures/vpc_module
+    verifier:
+      color: true
+      systems:
+        - name: gcp
+          backend: gcp  
+          controls:
+            - gcp_tf_utc
+          reporter:
+            - cli
+            - json:reports/test/data/inspec/default.json
